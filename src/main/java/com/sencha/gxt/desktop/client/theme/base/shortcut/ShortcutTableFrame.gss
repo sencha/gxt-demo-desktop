@@ -1,0 +1,51 @@
+
+.contentArea {
+}
+
+.frame {
+}
+
+.left {
+}
+
+.right {
+}
+
+.topLeft {
+}
+
+.top {
+}
+
+.topRight {
+}
+
+.bottomLeft {
+}
+
+.bottom {
+}
+
+.bottomRight {
+}
+
+.focus {
+}
+
+.content {
+  color: white;
+  padding: 3px;
+}
+
+.over .content {
+  color: white;
+  text-decoration: underline;
+  padding: 3px;
+}
+
+.pressed .content {
+  color: white;
+  text-decoration: underline;
+  padding: 2px;
+  border: 1px dashed white;
+}
