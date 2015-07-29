@@ -1,0 +1,158 @@
+@external x-has-width;
+
+.x-has-width .frame {
+  width: 100%;
+}
+
+.contentArea {
+}
+
+.content {
+  gwt-sprite: "background";
+  height: 100%;
+  width: 100%;
+}
+
+.topLeft {
+  gwt-sprite: "topLeftBorder";
+  height: 0;
+  width: 0;
+}
+
+.top {
+  gwt-sprite: "topBorder";
+  height: 0;
+  width: 0;
+}
+
+.topRight {
+  gwt-sprite: "topRightBorder";
+  height: 0;
+  width: 0;
+}
+
+.bottomLeft {
+  gwt-sprite: "bottomLeftBorder";
+  height: 0;
+  width: 0;
+}
+
+.bottom {
+  gwt-sprite: "bottomBorder";
+  height: 0;
+  width: 0;
+}
+
+.bottomRight {
+  gwt-sprite: "bottomRightBorder";
+  height: 0;
+  width: 0;
+}
+
+.left {
+  gwt-sprite: "leftBorder";
+}
+
+.right {
+  gwt-sprite: "rightBorder";
+}
+
+.over .content {
+  gwt-sprite: "backgroundOverBorder";
+  height: 100%;
+  width: 100%;
+}
+
+.over .topLeft {
+  gwt-sprite: "topLeftOverBorder";
+  height: 0;
+  width: 0;
+}
+
+.over .top {
+  gwt-sprite: "topOverBorder";
+  height: 0;
+  width: 0;
+}
+
+.over .topRight {
+  gwt-sprite: "topRightOverBorder";
+  height: 0;
+  width: 0;
+}
+
+.over .bottomLeft {
+  gwt-sprite: "bottomLeftOverBorder";
+  height: 0;
+  width: 0;
+}
+
+.over .bottom {
+  gwt-sprite: "bottomOverBorder";
+  height: 0;
+  width: 0;
+}
+
+.over .right {
+  gwt-sprite: "rightOverBorder";
+}
+
+.over .bottomRight {
+  gwt-sprite: "bottomRightOverBorder";
+  height: 0;
+  width: 0;
+}
+
+.over .left {
+  gwt-sprite: "leftOverBorder";
+}
+
+.pressed .content {
+  gwt-sprite: "backgroundPressedBorder";
+  height: 100%;
+  width: 100%;
+}
+
+.pressed .topLeft {
+  gwt-sprite: "topLeftPressedBorder";
+  height: 0;
+  width: 0;
+}
+
+.pressed .top {
+  gwt-sprite: "topPressedBorder";
+  height: 0;
+  width: 0;
+}
+
+.pressed .topRight {
+  gwt-sprite: "topRightPressedBorder";
+  height: 0;
+  width: 0;
+}
+
+.pressed .bottomLeft {
+  gwt-sprite: "bottomLeftPressedBorder";
+  height: 0;
+  width: 0;
+}
+
+.pressed .bottom {
+  gwt-sprite: "bottomPressedBorder";
+  height: 0;
+  width: 0;
+}
+
+.pressed .right {
+  gwt-sprite: "rightPressedBorder";
+}
+
+.pressed .bottomRight {
+  gwt-sprite: "bottomRightPressedBorder";
+  height: 0;
+  width: 0;
+}
+
+.pressed .left {
+  gwt-sprite: "leftPressedBorder";
+}

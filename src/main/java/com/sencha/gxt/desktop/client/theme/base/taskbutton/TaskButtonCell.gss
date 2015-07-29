@@ -1,0 +1,9 @@
+
+.mainTable {
+  height: 29px;
+}
+
+.text {
+  color: white;
+  height: auto;
+}

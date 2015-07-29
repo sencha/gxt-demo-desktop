@@ -1,0 +1,6 @@
+
+.menu {
+  width: auto;
+  background: #3f444a;
+  border: none;
+}

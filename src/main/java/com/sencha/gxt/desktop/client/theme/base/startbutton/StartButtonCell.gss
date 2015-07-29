@@ -1,0 +1,15 @@
+
+.small .iconLeft td, 
+.small .iconRight td, 
+.small .noIcon td {
+}
+
+.text {
+  font-weight: bold;
+}
+
+startButtonIcon {
+  gwt-sprite: "startButtonIcon";
+  height: 100%;
+  width: 100%;
+}

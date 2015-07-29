@@ -1,0 +1,1 @@
+package com.sencha.gxt.desktopapp.client.service;import com.sencha.gxt.desktopapp.client.servicebus.ServiceRequest;public class LoginServiceRequest implements ServiceRequest {  public LoginServiceRequest() {  }}

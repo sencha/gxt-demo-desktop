@@ -1,0 +1,5 @@
+
+a.menuItem {
+  color: white;
+  font-weight: 600;
+}

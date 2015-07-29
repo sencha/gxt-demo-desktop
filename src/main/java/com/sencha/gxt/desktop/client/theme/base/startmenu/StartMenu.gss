@@ -1,0 +1,23 @@
+
+.startMenu {
+  background-color: #3f444a;
+  width: 300px;
+  border: 1px solid gray;
+}
+
+.heading {
+}
+
+.body {
+  vertical-align: top;
+  height: 300px;
+}
+
+.mainMenu {
+  background-color: white;
+  width: 200px;
+}
+
+.toolMenu {
+  width: 100px;
+}
