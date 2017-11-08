@@ -195,7 +195,7 @@ public class ProfileViewImpl implements ProfileView, Editor<ProfileModel> {
   private Window getWindow() {
     if (window == null) {
       window = new Window();
-      window.setHeadingText("Profile Update");
+      window.setHeading("Profile Update");
       window.getHeader().setIcon(DesktopImages.INSTANCE.user_edit());
       window.setPixelSize(200, 200);
       window.setButtonAlign(BoxLayoutPack.END);

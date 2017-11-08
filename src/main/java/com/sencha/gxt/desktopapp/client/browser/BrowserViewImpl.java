@@ -46,7 +46,7 @@ public class BrowserViewImpl implements BrowserView, HideHandler, ShowHandler {
 
   @Override
   public void setTitle(String title) {
-    getWindow().setHeadingText(title);
+    getWindow().setHeading(title);
   }
 
   @Override

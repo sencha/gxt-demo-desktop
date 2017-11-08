@@ -133,7 +133,7 @@ public class SpreadsheetViewImpl implements SpreadsheetView, HideHandler, ShowHa
 
   @Override
   public void setTitle(String title) {
-    getWindow().setHeadingText(title);
+    getWindow().setHeading(title);
   }
 
   @Override
