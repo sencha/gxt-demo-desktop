@@ -209,7 +209,7 @@ public class LoginViewImpl implements LoginView, Editor<LoginModel> {
   private Window getWindow() {
     if (window == null) {
       window = new Window();
-      window.setHeadingText("Desktop Login");
+      window.setHeading("Desktop Login");
       window.getHeader().setIcon(DesktopImages.INSTANCE.door_in());
       window.setPixelSize(200, 200);
       window.setButtonAlign(BoxLayoutPack.END);

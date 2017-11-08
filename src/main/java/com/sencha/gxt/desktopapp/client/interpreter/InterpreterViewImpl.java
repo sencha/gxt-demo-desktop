@@ -88,7 +88,7 @@ public class InterpreterViewImpl implements InterpreterView, HideHandler, ShowHa
 
   @Override
   public void setTitle(String title) {
-    getWindow().setHeadingText(title);
+    getWindow().setHeading(title);
   }
 
   @Override

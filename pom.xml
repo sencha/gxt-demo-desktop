@@ -5,30 +5,33 @@
 
   <groupId>com.sencha.gxt</groupId>
   <artifactId>gxt-demo-desktop</artifactId>
-  <version>4.0.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>Sencha Desktop Demo</name>
 
   <properties>
-    <gwt.version>2.7.0</gwt.version>
-    <gxt.version>4.0.0-SNAPSHOT</gxt.version>
-    <java.version>1.6</java.version>
+    <!-- GXT -->
+    <gxt.version>4.0.2</gxt.version>
 
-    <build.description>development build</build.description>
-    <gwt.compiler.strict>true</gwt.compiler.strict>
-    <gwt.test.testTimeOut>480</gwt.test.testTimeOut>
-    <!-- Extra arguments to be given to the JVM hosting the GWT compiler -->
-    <gwt.extraJvmArgs>-Xmx2g -XX:MaxPermSize=1g</gwt.extraJvmArgs>
-    <gwt.testMethodTimeout>15</gwt.testMethodTimeout>
+    <!-- GWT -->
+    <gwt.version>2.8.2</gwt.version>
+    <gwt.plugin.version>2.8.2</gwt.plugin.version>
+    <gwt.style>OBF</gwt.style>
+
+    <!-- Maven -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+
+    <downloadSources>true</downloadSources>
+    <downloadJavadocs>true</downloadJavadocs>
   </properties>
 
   <build>
+    <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+
     <resources>
       <resource>
         <directory>src/main/resources</directory>
-      </resource>
-      <resource>
-        <directory>src/main/java</directory>
       </resource>
     </resources>
 
@@ -36,41 +39,90 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.5.1</version>
         <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
+          <source>1.7</source>
+          <target>1.7</target>
         </configuration>
       </plugin>
 
+      <!-- Skips the GWTTestCases during Junit Testing -->
       <plugin>
-        <groupId>com.google.code.maven-license-plugin</groupId>
-        <artifactId>maven-license-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.12</version>
         <configuration>
-          <mapping>
-            <gss>JAVADOC_STYLE</gss>
-          </mapping>
+          <includes>
+            <include>**/*Test.java</include>
+          </includes>
+          <excludes>
+            <exclude>**/*GwtTest.java</exclude>
+          </excludes>
         </configuration>
       </plugin>
 
+      <!-- GWT -->
+      <!-- 'mvn gwt:run' - runs development mode -->
+      <!-- 'mvn gwt:debug' - runs debug mode -->
+      <!-- 'mvn gwt:compile' - compiles gwt -->
+      <!-- 'mvn gwt:test' or 'mvn integration-test' - runs the gwt tests (*GwtTest.java), (run a suite its faster) -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
+        <version>${gwt.plugin.version}</version>
+        <configuration>
+          <strict>true</strict>
+
+          <testTimeOut>180</testTimeOut>
+          <includes>**/*GwtTestSuite.java</includes>
+          <excludes>**/*GwtTest.java</excludes>
+          <mode>htmlunit</mode>
+
+          <extraJvmArgs>-Xss1024K -Xmx1G -XX:MaxPermSize=256M</extraJvmArgs>
+          <logLevel>INFO</logLevel>
+          <style>${gwt.style}</style>
+
+          <copyWebapp>true</copyWebapp>
+          <hostedWebapp>${webappDirectory}</hostedWebapp>
+
+          <runTarget>MyGxtProject40.html</runTarget>
+          <modules>
+            <module>com.sencha.gxt.examples.resources.Resources</module>
+            <module>com.sencha.gxt.desktop.Desktop</module>
+            <module>com.sencha.gxt.desktopapp.DesktopApp</module>
+          </modules>
+        </configuration>
         <executions>
           <execution>
-            <phase>prepare-package</phase>
             <goals>
+              <goal>test</goal>
               <goal>compile</goal>
             </goals>
-            <configuration>
-              <modules>
-                <module>com.sencha.gxt.examples.resources.Resources</module>
-                <module>com.sencha.gxt.desktop.Desktop</module>
-                <module>com.sencha.gxt.desktopapp.DesktopApp</module>
-              </modules>
-            </configuration>
           </execution>
         </executions>
+
+        <dependencies>
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwt.version}</version>
+            <scope>compile</scope>
+          </dependency>
+
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwt.version}</version>
+            <scope>compile</scope>
+          </dependency>
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-codeserver</artifactId>
+            <version>${gwt.version}</version>
+            <scope>compile</scope>
+          </dependency>
+
+        </dependencies>
       </plugin>
 
       <plugin>
@@ -80,12 +132,12 @@
         <configuration>
           <includes>**/server/data/*.class</includes>
           <addDefaultConstructor>true</addDefaultConstructor>
-          <toolProperties>
+          <!-- <toolProperties>
             <property>
               <name>directory</name>
               <value>${project.build.directory}/classes</value>
             </property>
-          </toolProperties>
+          </toolProperties> -->
         </configuration>
         <executions>
           <execution>
@@ -118,58 +170,6 @@
             <version>2.9.1</version>
           </dependency>
         </dependencies>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.10</version>
-        <configuration>
-          <runOrder>random</runOrder>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.1.1</version>
-        <configuration>
-          <!-- Provide a classes jar for source in the dist zip -->
-          <attachClasses>true</attachClasses>
-          <webResources>
-            <resource>
-              <filtering>true</filtering>
-              <directory>src/main/webapp</directory>
-              <includes>
-                <include>**/*.html</include>
-              </includes>
-            </resource>
-          </webResources>
-          <packagingExcludes>WEB-INF/deploy/**</packagingExcludes>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
-        <executions>
-          <execution>
-            <id>attach-desktop-example-classes</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-            <configuration>
-              <classifier>desktop</classifier>
-              <includes>
-                <include>com/sencha/gxt/desktop/**/*</include>
-              </includes>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-source-plugin</artifactId>
       </plugin>
     </plugins>
 
@@ -247,7 +247,60 @@
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
       <layout>default</layout>
     </repository>
+    <repository>
+      <!-- http://docs.sencha.com/gxt/3.1/getting_started/maven/Maven.html -->
+      <!-- ~/.m2/settings.xml add <server/> with the support portal credentials -->
+      <id>sencha-gxt-repository</id>
+      <name>Sencha GXT Repository</name>
+
+      <!-- Commercial (with Support) -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-commercial-release</url> -->
+      <url>https://maven.sencha.com/repo/gxt-support-commercial-release</url>
+      <!-- <url>https://maven.sencha.com/repo/gxt-commercial-release-staging</url> -->
+
+
+      <!-- GPL -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-gpl-release</url> -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-gpl-snapshot</url> -->
+
+      <!-- GPL with Support -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-support-gpl-release</url> -->
+
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
   </repositories>
+
+  <!-- Maven Exec, it uses the theme builder -->
+  <pluginRepositories>
+    <pluginRepository>
+      <!-- http://docs.sencha.com/gxt/3.1/getting_started/maven/Maven.html -->
+      <!-- ~/.m2/settings.xml add <server/> with the support portal credentials -->
+      <id>sencha-gxt-repository</id>
+      <name>Sencha GXT Repository</name>
+
+      <!-- Commercial (with Support) -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-commercial-release</url> -->
+      <url>https://maven.sencha.com/repo/gxt-support-commercial-release</url>
+      <!-- <url>https://maven.sencha.com/repo/gxt-commercial-release-staging</url> -->
+
+
+      <!-- GPL -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-gpl-release</url> -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-gpl-snapshot</url> -->
+
+      <!-- GPL with Support -->
+      <!-- <url>https://maven.sencha.com/repo/gxt-support-gpl-release</url> -->
+    </pluginRepository>
+
+    <!-- GWT plugin snapshot repo -->
+    <!-- <pluginRepository> <id>google-snapshots</id> <url>https://oss.sonatype.org/content/repositories/google-snapshots/</url> 
+      <releases> <enabled>false</enabled> </releases> <snapshots> <enabled>true</enabled> </snapshots> </pluginRepository> -->
+  </pluginRepositories>
 
   <dependencies>
     <dependency>
@@ -271,37 +324,37 @@
     <dependency>
       <groupId>com.google.gwt.inject</groupId>
       <artifactId>gin</artifactId>
-      <version>1.5.0</version>
+      <version>2.1.2</version>
     </dependency>
     <dependency>
       <groupId>com.sencha.gxt</groupId>
       <artifactId>gxt</artifactId>
-      <version>${project.version}</version>
+      <version>${gxt.version}</version>
     </dependency>
     <dependency>
       <groupId>com.sencha.gxt</groupId>
       <artifactId>gxt-chart</artifactId>
-      <version>${project.version}</version>
+      <version>${gxt.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.sencha.gxt</groupId>
       <artifactId>gxt-theme-neptune</artifactId>
-      <version>${project.version}</version>
+      <version>${gxt.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
-      <version>2.0.0</version>
+      <version>2.4.0</version>
     </dependency>
 
     <!-- Support for our JPA persistence -->
     <dependency>
       <groupId>org.apache.openjpa</groupId>
       <artifactId>openjpa-all</artifactId>
-      <version>2.1.0</version>
+      <version>2.4.2</version>
     </dependency>
 
     <!-- RF annotation processing -->

@@ -128,7 +128,7 @@ public class SpreadsheetChartViewImpl implements SpreadsheetChartView, HideHandl
 
   @Override
   public void setTitle(String newTitle) {
-    getWindow().setHeadingText(newTitle);
+    getWindow().setHeading(newTitle);
   }
 
   private NumericAxis<Row> getAxis() {

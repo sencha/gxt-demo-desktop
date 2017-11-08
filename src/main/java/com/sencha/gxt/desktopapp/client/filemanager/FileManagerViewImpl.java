@@ -271,7 +271,7 @@ public class FileManagerViewImpl implements FileManagerView, HideHandler {
             getFileManagerPresenter().onSelect(fileModel);
           }
           getFileManagerToolBar().setButtonEnabledState();
-          getWindow().setHeadingText(getTitle(fileModel));
+          getWindow().setHeading(getTitle(fileModel));
         }
       };
     }
@@ -345,7 +345,7 @@ public class FileManagerViewImpl implements FileManagerView, HideHandler {
   private Window getWindow() {
     if (window == null) {
       window = new Window();
-      window.setHeadingText(getTitle(null));
+      window.setHeading(getTitle(null));
       window.getHeader().setIcon(Images.getImageResources().folder());
       window.setMinimizable(true);
       window.setMaximizable(true);
@@ -364,7 +364,7 @@ public class FileManagerViewImpl implements FileManagerView, HideHandler {
     Scheduler.get().scheduleFixedDelay(new RepeatingCommand() {
       @Override
       public boolean execute() {
-        getWindow().setHeadingText(getTitle(getSelectedItem()));
+        getWindow().setHeading(getTitle(getSelectedItem()));
         return false;
       }
     }, 250);
