@@ -26,4 +26,7 @@
   <!-- group ie -->
   <collapse-property name="gxt.user.agent" values="ie8, ie9, ie10" />
   <collapse-property name="user.agent" values="ie*" />
+  
+  <!-- The property below is replaced from maven profile mvn install -Pfast-build -->
+  <!--{profile.fast.build}-->
 </module>

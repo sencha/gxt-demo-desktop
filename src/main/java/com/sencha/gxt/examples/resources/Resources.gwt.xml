@@ -10,4 +10,7 @@
   <!-- Specify the paths for translatable code -->
   <source path='client' />
   <source path='shared' />
+  
+  <!-- The property below is replaced from maven profile mvn install -Pfast-build -->
+  <!--{profile.fast.build}-->
 </module>
