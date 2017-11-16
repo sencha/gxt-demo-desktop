@@ -1,7 +1,13 @@
 # GXT Demo Desktop
-This is the desktop that was in GXT 3.1 converted to GXT 4.0.x.
+This is an example of the GXT desktop.  
 
-* This hasn't been fully tested yet. 
+<img src='./theapp.png' width='400px' />
+
+
+## Import
+
+* Import project.
+* If you're using Eclipse you won't have to run mvn install first. 
 
 ## Build
 
