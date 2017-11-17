@@ -3,6 +3,14 @@ This is an example of the GXT desktop.
 
 <img src='./theapp.png' width='400px' />
 
+## GXT 
+
+* [Sencha GXT Product Info](https://www.sencha.com/products/gxt/)
+* [GXT Guides](http://docs.sencha.com/gxt/4.x/)
+
+## Demo
+
+* [http://examples.sencha.com/gxt-edash/](http://examples.sencha.com/gxt-edash/)
 
 ## Import
 
