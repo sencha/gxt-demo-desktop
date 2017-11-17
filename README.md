@@ -10,7 +10,7 @@ This is an example of the GXT desktop.
 
 ## Demo
 
-* [http://examples.sencha.com/gxt-edash/](http://examples.sencha.com/gxt-edash/)
+* [EDash Demo](http://examples.sencha.com/gxt-edash/)
 
 ## Import
 
